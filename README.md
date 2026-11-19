@@ -10,8 +10,8 @@
 | **Problema em uma frase** | O morador percebe que a conta subiu, mas não sabe se foi mudança de hábito, mais gente em casa, vazamento oculto, tarifa ou erro de leitura, e muitas vezes só investiga depois da cobrança. |
 | **Como funciona** | O morador cadastra as contas, o sistema transforma cada uma em litros por pessoa por dia, compara com o histórico da própria casa, explica o aumento, aplica um questionário de investigação e registra as verificações. Um monitor com ESP32 (simulado) avisa quando há fluxo de água sem pausa. |
 | **O que cada parte faz** | **Aplicação web (este repositório):** cadastro, análise, investigação, verificações e painel do monitor. **API REST:** guarda contas e verificações em banco de dados. **ESP32 no Wokwi:** emula o fluxo com um potenciômetro, decide o estado e publica telemetria por MQTT. **Aplicação Python:** versão de terminal das mesmas regras. **Modelo matemático:** mostra quanto uma pequena perda acumula. |
-| **Repositório** | [PREENCHER: link do repositório no GitHub] |
-| **Deploy** | [PREENCHER: link do deploy] |
+| **Repositório** | https://github.com/douglasfspatriota/GS-front-e-webdev |
+| **Deploy** | https://gs-front-e-webdev.onrender.com |
 | **Indicador de impacto** | Proporção de alertas "investigar aumento" que terminam com desfecho registrado (consumo explicado ou reparo realizado) e variação do consumo por pessoa por dia nas contas seguintes. Ainda não medido: o protótipo usa dados fictícios. |
 | **ODS** | ODS 6, meta 6.4 (eficiência no uso da água) e ODS 12, meta 12.2 (uso eficiente dos recursos naturais) |
 
