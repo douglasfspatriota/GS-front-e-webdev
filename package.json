@@ -1,11 +1,11 @@
 {
   "name": "gota-alerta",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Gota Alerta - CitizenTech para entender a conta de água (FIAP Global Solution 2026.2, turma 1ESR)",
   "type": "module",
   "engines": {
-    "node": ">=22.13"
+    "node": ">=22.22"
   },
   "scripts": {
     "dev": "concurrently --names api,web --prefix-colors blue,green \"npm run api\" \"npm run web\"",
@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "test": "node --test testes/*.test.js",
     "api": "node servidor/index.js",
-    "web": "vite"
+    "web": "vite",
+    "start": "node servidor/index.js --servir-site"
   },
   "dependencies": {
     "@fontsource-variable/atkinson-hyperlegible-next": "^5.3.0",

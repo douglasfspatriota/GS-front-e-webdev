@@ -1,0 +1,12 @@
+# Deploy no Render (https://render.com): site e API no mesmo serviço Node.
+services:
+  - type: web
+    name: gota-alerta
+    runtime: node
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/saude
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
