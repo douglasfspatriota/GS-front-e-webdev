@@ -15,7 +15,8 @@ export function paraNumero(valor) {
   return Number(valor.trim().replace(/\./g, '').replace(',', '.'));
 }
 
-function paraNumeroSimples(valor) {
+// Lê um número digitado: "18,5", "18.5" ou "1.000,50".
+export function lerNumero(valor) {
   if (typeof valor === 'number') return valor;
   if (typeof valor !== 'string' || valor.trim() === '') return NaN;
   const texto = valor.trim();
@@ -28,10 +29,10 @@ const FORMATO_MES = /^\d{4}-(0[1-9]|1[0-2])$/;
 export function validarConta(dados = {}, { hoje = new Date() } = {}) {
   const erros = {};
   const mes = String(dados.mes ?? '').trim();
-  const volume_m3 = paraNumeroSimples(dados.volume_m3);
-  const valor_reais = paraNumeroSimples(dados.valor_reais);
-  const dias = paraNumeroSimples(dados.dias);
-  const moradores = paraNumeroSimples(dados.moradores);
+  const volume_m3 = lerNumero(dados.volume_m3);
+  const valor_reais = lerNumero(dados.valor_reais);
+  const dias = lerNumero(dados.dias);
+  const moradores = lerNumero(dados.moradores);
 
   if (!FORMATO_MES.test(mes)) {
     erros.mes = 'Informe o mês no formato AAAA-MM.';
