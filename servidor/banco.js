@@ -13,6 +13,18 @@ const ESQUEMA = `
     criado_em   TEXT    NOT NULL DEFAULT (datetime('now')),
     UNIQUE (casa_id, mes)
   );
+
+  CREATE TABLE IF NOT EXISTS verificacoes (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    casa_id       TEXT    NOT NULL,
+    conta_mes     TEXT    NOT NULL,
+    respostas     TEXT    NOT NULL DEFAULT '{}',
+    hipotese      TEXT    NOT NULL DEFAULT '',
+    desfecho      TEXT    NOT NULL DEFAULT 'pendente',
+    anotacao      TEXT    NOT NULL DEFAULT '',
+    criado_em     TEXT    NOT NULL DEFAULT (datetime('now')),
+    atualizado_em TEXT    NOT NULL DEFAULT (datetime('now'))
+  );
 `;
 
 export function abrirBanco(caminho = ':memory:') {
