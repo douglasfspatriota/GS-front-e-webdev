@@ -2,6 +2,7 @@
 // e entrega a análise e o histórico já calculados para as telas.
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { apiContas } from '../servicos/api.js';
+import { CONTAS_DEMONSTRACAO } from '../dados/demonstracao.js';
 import { analisarConsumo, montarHistorico, ordenarPorMes } from '../regras/consumo.js';
 
 export function useContas() {
@@ -44,8 +45,17 @@ export function useContas() {
     setContas((atuais) => atuais.filter((c) => c.id !== id));
   }, []);
 
+  // Cadastra as contas fictícias de demonstração (pula meses já cadastrados).
+  const carregarDemonstracao = useCallback(async () => {
+    const existentes = new Set((await apiContas.listar()).map((c) => c.mes));
+    for (const conta of CONTAS_DEMONSTRACAO) {
+      if (!existentes.has(conta.mes)) await apiContas.criar(conta);
+    }
+    await recarregar();
+  }, [recarregar]);
+
   const analise = useMemo(() => analisarConsumo(contas), [contas]);
   const historico = useMemo(() => montarHistorico(contas), [contas]);
 
-  return { contas, carregando, erro, recarregar, criar, atualizar, excluir, analise, historico };
+  return { contas, carregando, erro, recarregar, criar, atualizar, excluir, carregarDemonstracao, analise, historico };
 }
