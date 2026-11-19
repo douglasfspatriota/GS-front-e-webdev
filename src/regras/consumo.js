@@ -107,3 +107,18 @@ export function montarHistorico(contas) {
     precoM3: precoPorM3(conta),
   }));
 }
+
+// Evolução depois de uma verificação: compara cada conta seguinte com a conta analisada.
+export function evolucaoAposMes(contas, mes) {
+  const ordenadas = ordenarPorMes(contas);
+  const base = ordenadas.find((c) => c.mes === mes);
+  if (!base) return { base: null, seguintes: [] };
+  const consumoBase = litrosPorPessoaDia(base);
+  const seguintes = ordenadas
+    .filter((c) => c.mes > mes)
+    .map((c) => {
+      const litros = litrosPorPessoaDia(c);
+      return { mes: c.mes, litros, variacao: variacao(litros, consumoBase) };
+    });
+  return { base: { mes: base.mes, litros: consumoBase }, seguintes };
+}

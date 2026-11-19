@@ -62,3 +62,14 @@ test('formata mês e percentual', () => {
   assert.equal(formatarMes('2026-10'), 'out/2026');
   assert.equal(formatarPercentual(0.5), '+50%');
 });
+
+import { evolucaoAposMes } from '../src/regras/consumo.js';
+
+test('acompanha a evolução das contas depois da verificação', () => {
+  const contas = [conta('2026-09', 18), conta('2026-10', 27), conta('2026-11', 18)];
+  const r = evolucaoAposMes(contas, '2026-10');
+  assert.equal(r.base.litros, 300);
+  assert.equal(r.seguintes.length, 1);
+  assert.ok(Math.abs(r.seguintes[0].variacao - -1 / 3) < 1e-9);
+  assert.deepEqual(evolucaoAposMes(contas, '2025-01'), { base: null, seguintes: [] });
+});
