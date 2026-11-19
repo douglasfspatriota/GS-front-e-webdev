@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { NIVEIS } from '../regras/consumo.js';
 import { formatarLitros, formatarMes, formatarNumero, formatarReais } from '../regras/formatos.js';
 
-const LARGURA = 640;
+const LARGURA = 560;
 const ALTURA = 260;
-const MARGEM = { topo: 16, direita: 12, base: 36, esquerda: 48 };
+const MARGEM = { topo: 16, direita: 12, base: 36, esquerda: 52 };
 
 const COR_NIVEL = {
   [NIVEIS.NORMAL]: '#059669',
@@ -56,7 +56,7 @@ export default function GraficoConsumo({ historico, referencia, nivel }) {
         {marcas.map((m) => (
           <g key={m} aria-hidden="true">
             <line x1={MARGEM.esquerda} x2={LARGURA - MARGEM.direita} y1={y(m)} y2={y(m)} stroke="#e2e8f0" />
-            <text x={MARGEM.esquerda - 8} y={y(m)} textAnchor="end" dominantBaseline="middle" className="fill-slate-500 text-[12px]">
+            <text x={MARGEM.esquerda - 8} y={y(m)} textAnchor="end" dominantBaseline="middle" className="fill-slate-500 text-[14px]">
               {formatarNumero(m)}
             </text>
           </g>
@@ -89,7 +89,7 @@ export default function GraficoConsumo({ historico, referencia, nivel }) {
               />
               {/* área de clique maior que a barra */}
               <rect x={cx - faixa / 2} y={MARGEM.topo} width={faixa} height={areaA} fill="transparent" />
-              <text x={cx} y={ALTURA - MARGEM.base + 18} textAnchor="middle" className={`text-[12px] ${ativo ? 'fill-slate-900 font-bold' : 'fill-slate-600'}`}>
+              <text x={cx} y={ALTURA - MARGEM.base + 18} textAnchor="middle" className={`text-[14px] ${ativo ? 'fill-slate-900 font-bold' : 'fill-slate-600'}`}>
                 {formatarMes(c.mes).split('/')[0]}
               </text>
             </g>
@@ -107,7 +107,7 @@ export default function GraficoConsumo({ historico, referencia, nivel }) {
               strokeWidth="2"
               strokeDasharray="6 4"
             />
-            <text x={LARGURA - MARGEM.direita} y={y(referencia) - 6} textAnchor="end" className="fill-agua-900 text-[12px] font-bold">
+            <text x={LARGURA - MARGEM.direita} y={y(referencia) - 6} textAnchor="end" className="fill-agua-900 text-[14px] font-bold">
               média de referência {formatarLitros(referencia)}
             </text>
           </g>
