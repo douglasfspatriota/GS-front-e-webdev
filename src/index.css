@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-agua-50: #ecfeff;
+  --color-agua-100: #cffafe;
+  --color-agua-600: #0891b2;
+  --color-agua-700: #0e7490;
+  --color-agua-900: #164e63;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+}
