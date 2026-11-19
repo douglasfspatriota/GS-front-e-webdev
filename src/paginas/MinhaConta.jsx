@@ -4,6 +4,7 @@ import { Database, Plus, Search } from 'lucide-react';
 import TituloPagina from '../componentes/TituloPagina.jsx';
 import VisorHidrometro from '../componentes/VisorHidrometro.jsx';
 import SeloNivel from '../componentes/SeloNivel.jsx';
+import GraficoConsumo from '../componentes/GraficoConsumo.jsx';
 import ExplicacaoAnalise from '../componentes/ExplicacaoAnalise.jsx';
 import Aviso from '../componentes/Aviso.jsx';
 import Botao from '../componentes/Botao.jsx';
@@ -83,6 +84,12 @@ export default function MinhaConta() {
           )}
         </div>
       </div>
+
+      <GraficoConsumo
+        historico={contas.historico.slice(-7)}
+        referencia={analise.consumoReferencia}
+        nivel={analise.nivel}
+      />
 
       {analise.nivel === NIVEIS.SEM_REFERENCIA ? (
         <Aviso
